@@ -25,6 +25,24 @@ class ListViewController: UIViewController, GrowingTableViewCellProtocol {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .systemBackground
+        self.setupTableView()
+        self.layout()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.addKeyboard()
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        
+    }
+    
+    func setupTableView() {
+        self.tableView = UITableView(frame: .zero, style: .grouped)
+        self.tableView.dataSource = self
+        self.tableView.delegate = self
     }
     
     func layout() {
@@ -39,26 +57,6 @@ class ListViewController: UIViewController, GrowingTableViewCellProtocol {
         self.bottomConstraint = self.tableView.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor, constant: 0)
         self.bottomConstraint?.isActive = true
         
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        self.addKeyboard()
-    }
-    
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-        
-    }
-    
-    func object(forIndexPath indexPath: IndexPath) -> Any? {
-        self.controller?.object(at: indexPath)
-    }
-    
-    func setupTableView() {
-        self.tableView = UITableView(frame: .zero, style: .grouped)
-        self.tableView.dataSource = self
-        self.tableView.delegate = self
     }
     
     func updateControllerResults() {
@@ -122,6 +120,10 @@ class ListViewController: UIViewController, GrowingTableViewCellProtocol {
 }
 
 extension ListViewController: UITableViewDataSource {
+    
+    func object(forIndexPath indexPath: IndexPath) -> Any? {
+        self.controller?.object(at: indexPath)
+    }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         

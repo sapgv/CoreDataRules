@@ -18,9 +18,7 @@ class PostListViewController: ListViewController {
         self.view.backgroundColor = .white
         self.setupViewModel()
         self.setupFetchController()
-        self.setupTableView()
         self.setupNavigationItems()
-        self.layout()
         self.updateControllerResults()
     }
     

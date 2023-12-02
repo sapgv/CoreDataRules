@@ -21,8 +21,6 @@ class UserListViewController: ListViewController {
         self.setupViewModel()
         self.setupFetchController()
         self.setupRefreshControl()
-        self.setupTableView()
-        self.layout()
         self.updateControllerResults()
     }
     
@@ -54,12 +52,12 @@ class UserListViewController: ListViewController {
         
         self.refreshControl = UIRefreshControl()
         self.refreshControl?.addTarget(self, action: #selector(refresh), for: .valueChanged)
+        self.tableView?.refreshControl = refreshControl
         
     }
     
     override func setupTableView() {
         super.setupTableView()
-        self.tableView.refreshControl = self.refreshControl
         self.tableView.register(UINib(nibName: "UserCell", bundle: nil), forCellReuseIdentifier: "UserCell")
     }
     
@@ -73,11 +71,6 @@ class UserListViewController: ListViewController {
 }
 
 extension UserListViewController {
-    
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        guard let fetchController = self.controller else { return 0 }
-        return fetchController.fetchedObjects?.count ?? 0
-    }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     
