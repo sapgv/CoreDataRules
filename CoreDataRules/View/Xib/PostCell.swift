@@ -9,8 +9,6 @@ import UIKit
 
 class PostCell: UITableViewCell {
 
-    @IBOutlet weak var idLabel: UILabel!
-    
     @IBOutlet weak var titleLabel: UILabel!
     
     @IBOutlet weak var bodyLabel: UILabel!
@@ -21,7 +19,6 @@ class PostCell: UITableViewCell {
     }
 
     func setup(cdPost: CDPost) {
-        self.idLabel.text = "\(cdPost.id)"
         self.titleLabel.text = cdPost.title
         self.bodyLabel.text = cdPost.body
     }

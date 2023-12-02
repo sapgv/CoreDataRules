@@ -18,20 +18,14 @@
                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Y5x-v8-ljJ">
                         <rect key="frame" x="8" y="8" width="304" height="227"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="id" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0fI-rN-dxc">
-                                <rect key="frame" x="0.0" y="0.0" width="304" height="20.333333333333332"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VMO-TC-ghq">
-                                <rect key="frame" x="0.0" y="20.333333333333336" width="304" height="20.333333333333336"/>
+                                <rect key="frame" x="0.0" y="0.0" width="304" height="20.333333333333332"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Body" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RKt-co-Qtw">
-                                <rect key="frame" x="0.0" y="40.666666666666671" width="304" height="186.33333333333331"/>
+                                <rect key="frame" x="0.0" y="20.333333333333329" width="304" height="206.66666666666669"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -48,7 +42,6 @@
             </tableViewCellContentView>
             <connections>
                 <outlet property="bodyLabel" destination="RKt-co-Qtw" id="gRd-CZ-bQb"/>
-                <outlet property="idLabel" destination="0fI-rN-dxc" id="VKz-F3-OOZ"/>
                 <outlet property="titleLabel" destination="VMO-TC-ghq" id="Fh9-aa-U6x"/>
             </connections>
             <point key="canvasLocation" x="129.7709923664122" y="79.929577464788736"/>
