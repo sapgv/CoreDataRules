@@ -27,6 +27,16 @@ final class PostDetailViewController: ListViewController {
         self.tableView.register(UINib(nibName: "EditTextCell", bundle: nil), forCellReuseIdentifier: "EditTextCell")
     }
     
+    private func setupViewModel() {
+        
+        self.viewModel.updateUserCompletion = { [weak self] in
+            
+            self?.tableView.reloadData()
+            
+        }
+        
+    }
+    
     private func setupNavigationButton() {
         
         let button = UIBarButtonItem(title: "Сохранить", style: .plain, target: self, action: #selector(save))
@@ -45,8 +55,8 @@ final class PostDetailViewController: ListViewController {
         
         let viewController = UserListViewController()
         viewController.selectCompletion = { [weak self] cdUser in
-            self?.viewModel.cdPost.cdUser = cdUser
-            self?.tableView.reloadData()
+            
+            
         }
         viewController.viewModel = UserListViewModel()
 

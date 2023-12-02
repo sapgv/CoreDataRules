@@ -9,6 +9,8 @@ import CoreData
 
 protocol IPostDetailViewModel: AnyObject {
     
+    var updateUserCompletion: (() -> Void)? { get set }
+    
     var saveCompletion: ((Error?) -> Void)? { get set }
     
     var cdPost: CDPost { get }
@@ -17,15 +19,19 @@ protocol IPostDetailViewModel: AnyObject {
     
     func save()
     
+    func updateUser(cdUser: CDUser)
+    
 }
 
 final class PostDetailViewModel: IPostDetailViewModel {
+    
+    var updateUserCompletion: (() -> Void)?
     
     var saveCompletion: ((Error?) -> Void)?
     
     let cdPost: CDPost
     
-    let viewContext: NSManagedObjectContext
+    private let viewContext: NSManagedObjectContext
     
     private(set) var sections: [EditSection] = []
     
@@ -66,6 +72,12 @@ final class PostDetailViewModel: IPostDetailViewModel {
             }
             
         }
+        
+    }
+    
+    func updateUser(cdUser: CDUser) {
+        
+        
         
     }
     
