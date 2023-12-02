@@ -8,15 +8,11 @@
 import UIKit
 import CoreData
 
-class UserListViewController: UIViewController {
+class UserListViewController: ListViewController {
 
+    var selectCompletion: ((CDUser) -> Void)?
+    
     var viewModel: IUserListViewModel!
-    
-    private var tableView = UITableView(frame: .zero)
-    
-    private var fetchController: NSFetchedResultsController<NSFetchRequestResult>?
-    
-    private var refreshControl = UIRefreshControl()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,24 +20,24 @@ class UserListViewController: UIViewController {
         self.view.backgroundColor = .white
         self.setupViewModel()
         self.setupFetchController()
-        self.setupTableView()
         self.setupRefreshControl()
+        self.setupTableView()
         self.layout()
-        self.fetch()
+        self.updateControllerResults()
     }
     
     private func setupViewModel() {
         
         self.viewModel.updateCompletion = { [weak self] error in
             
-            self?.refreshControl.endRefreshing()
+            self?.refreshControl?.endRefreshing()
             
             if let error = error {
                 print(error)
                 return
             }
             
-            self?.fetch()
+            self?.updateControllerResults()
             
         }
         
@@ -49,46 +45,22 @@ class UserListViewController: UIViewController {
     
     private func setupFetchController() {
         
-        let request = NSFetchRequest<NSFetchRequestResult>(entityName: CDUser.entityName)
-        request.sortDescriptors = [NSSortDescriptor(key: "id", ascending: true)]
-        
-        self.fetchController = NSFetchedResultsController(fetchRequest: request, managedObjectContext: Model.coreData.viewContext, sectionNameKeyPath: nil, cacheName: nil)
+        self.controller = Model.coreData.fetchedResultController(entity: CDUser.entityName, sectionKey: nil, cacheName: nil, sortKey: "id", sortKeys: nil, sortDescriptors: nil, fetchPredicates: nil, ascending: true, batchSize: 50, fetchContext: nil)
+        self.controller?.delegate = self
         
     }
     
     private func setupRefreshControl() {
         
-        self.refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
+        self.refreshControl = UIRefreshControl()
+        self.refreshControl?.addTarget(self, action: #selector(refresh), for: .valueChanged)
         
     }
     
-    private func setupTableView() {
-        
-        self.tableView.refreshControl = refreshControl
-        self.tableView.dataSource = self
+    override func setupTableView() {
+        super.setupTableView()
+        self.tableView.refreshControl = self.refreshControl
         self.tableView.register(UINib(nibName: "UserCell", bundle: nil), forCellReuseIdentifier: "UserCell")
-        
-    }
-    
-    private func layout() {
-        
-        self.view.addSubview(tableView)
-        
-        self.tableView.translatesAutoresizingMaskIntoConstraints = false
-        
-        self.tableView.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor, constant: 0).isActive = true
-        self.tableView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 0).isActive = true
-        self.tableView.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor, constant: 0).isActive = true
-        self.tableView.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor, constant: 0).isActive = true
-        
-    }
-    
-    private func fetch() {
-        
-        try? self.fetchController?.performFetch()
-        
-        self.tableView.reloadData()
-        
     }
     
     @objc
@@ -100,26 +72,38 @@ class UserListViewController: UIViewController {
 
 }
 
-extension UserListViewController: UITableViewDataSource {
+extension UserListViewController {
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        guard let fetchController = self.fetchController else { return 0 }
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        guard let fetchController = self.controller else { return 0 }
         return fetchController.fetchedObjects?.count ?? 0
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "UserCell", for: indexPath) as? UserCell else {
             return UITableViewCell()
         }
         
-        guard let cdUser = self.fetchController?.fetchedObjects?[indexPath.row] as? CDUser else {
+        guard let cdUser = self.controller?.fetchedObjects?[indexPath.row] as? CDUser else {
             return UITableViewCell()
         }
         
         cell.setup(cdUser: cdUser)
         
         return cell
+        
+    }
+    
+}
+
+extension UserListViewController {
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        guard let cdUser = self.controller?.fetchedObjects?[indexPath.row] as? CDUser else { return }
+        
+        self.selectCompletion?(cdUser)
         
     }
     

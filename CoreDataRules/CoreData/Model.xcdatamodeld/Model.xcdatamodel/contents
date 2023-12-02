@@ -5,6 +5,7 @@
         <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="id" optional="YES" attributeType="String"/>
         <attribute name="title" optional="YES" attributeType="String"/>
+        <relationship name="cdUser" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CDUser" inverseName="cdPosts_" inverseEntity="CDUser"/>
         <uniquenessConstraints>
             <uniquenessConstraint>
                 <constraint value="id"/>
@@ -14,6 +15,7 @@
     <entity name="CDUser" representedClassName="CDUser" syncable="YES" codeGenerationType="class">
         <attribute name="id" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="name" optional="YES" attributeType="String"/>
+        <relationship name="cdPosts_" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="CDPost" inverseName="cdUser" inverseEntity="CDPost"/>
         <uniquenessConstraints>
             <uniquenessConstraint>
                 <constraint value="id"/>

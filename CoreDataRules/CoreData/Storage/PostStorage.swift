@@ -8,31 +8,25 @@
 import CoreData
 
 enum StorageError: Error {
+    
     case saveFailure(String)
+    
 }
 
 protocol IPostStorage: AnyObject {
     
-    func save(array: [[String: Any]], completion: @escaping (NSError?) -> Void)
+    func createPost(context: NSManagedObjectContext) -> CDPost
     
 }
 
 final class PostStorage: IPostStorage {
     
-    func save(array: [[String: Any]], completion: @escaping (NSError?) -> Void) {
+    func createPost(context: NSManagedObjectContext) -> CDPost {
         
-//        DispatchQueue.global().async {
-//            
-//            for data in array {
-//                
-//                let cdPost = CDPost(context: Model.coreData.viewContext)
-//                
-//                cdPost.fill(data: data)
-//                
-//            }
-//            
-//            
-//        }
+        let cdPost = CDPost(context: context)
+        cdPost.date = Date()
+        
+        return cdPost
         
     }
     

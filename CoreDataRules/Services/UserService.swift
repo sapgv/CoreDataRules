@@ -21,6 +21,8 @@ final class UserService: IUserService {
             
             // Api request
             
+            Thread.sleep(forTimeInterval: 1)
+            
             let array = UserData.array
             
             DispatchQueue.main.async {

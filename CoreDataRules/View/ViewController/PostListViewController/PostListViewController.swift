@@ -8,81 +8,85 @@
 import UIKit
 import CoreData
 
-class PostListViewController: UIViewController {
+class PostListViewController: ListViewController {
 
     var viewModel: IPostListViewModel!
-    
-    private var tableView = UITableView(frame: .zero)
-    
-    private var fetchController: NSFetchedResultsController<NSFetchRequestResult>?
-    
-    private var refreshControl = UIRefreshControl()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "Posts"
         self.view.backgroundColor = .white
+        self.setupViewModel()
         self.setupFetchController()
         self.setupTableView()
+        self.setupNavigationItems()
         self.layout()
-        self.fetch()
+        self.updateControllerResults()
     }
     
     private func setupViewModel() {
+        
+        self.viewModel.createPostCompletion = { [weak self] cdPost, viewContext in
+            
+            self?.showPost(cdPost: cdPost, viewContext: viewContext)
+            
+        }
         
     }
     
     private func setupFetchController() {
         
-        let request = NSFetchRequest<NSFetchRequestResult>(entityName: CDPost.entityName)
-        request.sortDescriptors = [NSSortDescriptor(key: "date", ascending: false)]
-        
-        self.fetchController = NSFetchedResultsController(fetchRequest: request, managedObjectContext: Model.coreData.viewContext, sectionNameKeyPath: nil, cacheName: nil)
+        self.controller = Model.coreData.fetchedResultController(entity: CDPost.entityName, sectionKey: nil, cacheName: nil, sortKey: "date", sortKeys: nil, sortDescriptors: nil, fetchPredicates: nil, ascending: true, batchSize: 50, fetchContext: nil)
+        self.controller?.delegate = self
         
     }
     
-    private func setupTableView() {
-        
-        self.tableView.dataSource = self
+    override func setupTableView() {
+        super.setupTableView()
         self.tableView.register(UINib(nibName: "PostCell", bundle: nil), forCellReuseIdentifier: "PostCell")
+    }
+    
+    private func setupNavigationItems() {
+        
+        let createPostButton = UIBarButtonItem(image: UIImage(systemName: "plus"), style: .plain, target: self, action: #selector(createPost))
+        self.navigationItem.rightBarButtonItem = createPostButton
         
     }
     
-    private func layout() {
+    @objc
+    private func createPost() {
         
-        self.view.addSubview(tableView)
-        
-        self.tableView.translatesAutoresizingMaskIntoConstraints = false
-        
-        self.tableView.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor, constant: 0).isActive = true
-        self.tableView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 0).isActive = true
-        self.tableView.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor, constant: 0).isActive = true
-        self.tableView.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor, constant: 0).isActive = true
+        self.viewModel.createPost()
         
     }
     
-    private func fetch() {
+    private func showPost(cdPost: CDPost, viewContext: NSManagedObjectContext) {
         
-        try? self.fetchController?.performFetch()
+        let postDetailViewModel = PostDetailViewModel(cdPost: cdPost, viewContext: viewContext)
         
-        self.tableView.reloadData()
+        let postDetailViewController = PostDetailViewController()
+        
+        postDetailViewController.viewModel = postDetailViewModel
+        
+        self.navigationController?.pushViewController(postDetailViewController, animated: true)
         
     }
     
 }
 
-extension PostListViewController: UITableViewDataSource {
+extension PostListViewController {
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        guard let fetchController = self.fetchController else { return 0 }
-        return fetchController.fetchedObjects?.count ?? 0
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "PostCell", for: indexPath) as? PostCell else {
             return UITableViewCell()
         }
+        
+        guard let cdPost = self.controller?.fetchedObjects?[indexPath.row] as? CDPost else {
+            return UITableViewCell()
+        }
+        
+        cell.setup(cdPost: cdPost)
         
         return cell
     }

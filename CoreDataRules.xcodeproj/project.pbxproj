@@ -23,6 +23,14 @@
 		1033B79C2B1A68BE0063EFA1 /* PostCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1033B79A2B1A68BE0063EFA1 /* PostCell.xib */; };
 		1033B79E2B1A6AB60063EFA1 /* PostListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1033B79D2B1A6AB60063EFA1 /* PostListViewModel.swift */; };
 		1033B7A12B1A6B2E0063EFA1 /* PostService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1033B7A02B1A6B2E0063EFA1 /* PostService.swift */; };
+		109BCFEB2B1B30CF00647B18 /* PostDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 109BCFEA2B1B30CF00647B18 /* PostDetailViewController.swift */; };
+		109BCFED2B1B30D900647B18 /* PostDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 109BCFEC2B1B30D900647B18 /* PostDetailViewModel.swift */; };
+		109BCFEF2B1B324F00647B18 /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 109BCFEE2B1B324F00647B18 /* ListViewController.swift */; };
+		109BCFF22B1B32E500647B18 /* GrowingTableViewCellProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 109BCFF12B1B32E500647B18 /* GrowingTableViewCellProtocol.swift */; };
+		109BCFF52B1B390B00647B18 /* EditSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 109BCFF32B1B390B00647B18 /* EditSection.swift */; };
+		109BCFF62B1B390B00647B18 /* EditRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 109BCFF42B1B390B00647B18 /* EditRow.swift */; };
+		109BCFFA2B1B39F800647B18 /* EditTextCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 109BCFF82B1B39F800647B18 /* EditTextCell.xib */; };
+		109BCFFB2B1B39F800647B18 /* EditTextCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 109BCFF92B1B39F800647B18 /* EditTextCell.swift */; };
 		10E9F0372B1B0B7E007A614C /* CDPost + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10E9F0362B1B0B7E007A614C /* CDPost + Extensions.swift */; };
 		10E9F0392B1B1E7C007A614C /* PostData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10E9F0382B1B1E7C007A614C /* PostData.swift */; };
 		10E9F03C2B1B1F74007A614C /* UserListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10E9F03B2B1B1F74007A614C /* UserListViewController.swift */; };
@@ -54,6 +62,14 @@
 		1033B79A2B1A68BE0063EFA1 /* PostCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PostCell.xib; sourceTree = "<group>"; };
 		1033B79D2B1A6AB60063EFA1 /* PostListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostListViewModel.swift; sourceTree = "<group>"; };
 		1033B7A02B1A6B2E0063EFA1 /* PostService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostService.swift; sourceTree = "<group>"; };
+		109BCFEA2B1B30CF00647B18 /* PostDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetailViewController.swift; sourceTree = "<group>"; };
+		109BCFEC2B1B30D900647B18 /* PostDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetailViewModel.swift; sourceTree = "<group>"; };
+		109BCFEE2B1B324F00647B18 /* ListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
+		109BCFF12B1B32E500647B18 /* GrowingTableViewCellProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GrowingTableViewCellProtocol.swift; sourceTree = "<group>"; };
+		109BCFF32B1B390B00647B18 /* EditSection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditSection.swift; sourceTree = "<group>"; };
+		109BCFF42B1B390B00647B18 /* EditRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditRow.swift; sourceTree = "<group>"; };
+		109BCFF82B1B39F800647B18 /* EditTextCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EditTextCell.xib; sourceTree = "<group>"; };
+		109BCFF92B1B39F800647B18 /* EditTextCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditTextCell.swift; sourceTree = "<group>"; };
 		10E9F0362B1B0B7E007A614C /* CDPost + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CDPost + Extensions.swift"; sourceTree = "<group>"; };
 		10E9F0382B1B1E7C007A614C /* PostData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostData.swift; sourceTree = "<group>"; };
 		10E9F03B2B1B1F74007A614C /* UserListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserListViewController.swift; sourceTree = "<group>"; };
@@ -153,6 +169,7 @@
 		1033B78C2B1A53B30063EFA1 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				109BCFF72B1B391000647B18 /* EditSection */,
 				1033B7982B1A68AD0063EFA1 /* Xib */,
 				10E9F0462B1B2148007A614C /* ViewController */,
 			);
@@ -171,6 +188,8 @@
 		1033B7982B1A68AD0063EFA1 /* Xib */ = {
 			isa = PBXGroup;
 			children = (
+				109BCFF92B1B39F800647B18 /* EditTextCell.swift */,
+				109BCFF82B1B39F800647B18 /* EditTextCell.xib */,
 				1033B7992B1A68BE0063EFA1 /* PostCell.swift */,
 				1033B79A2B1A68BE0063EFA1 /* PostCell.xib */,
 				10E9F0472B1B2167007A614C /* UserCell.swift */,
@@ -186,6 +205,33 @@
 				10E9F03F2B1B1FC4007A614C /* UserService.swift */,
 			);
 			path = Services;
+			sourceTree = "<group>";
+		};
+		109BCFE92B1B306500647B18 /* PostDetailViewController */ = {
+			isa = PBXGroup;
+			children = (
+				109BCFEC2B1B30D900647B18 /* PostDetailViewModel.swift */,
+				109BCFEA2B1B30CF00647B18 /* PostDetailViewController.swift */,
+			);
+			path = PostDetailViewController;
+			sourceTree = "<group>";
+		};
+		109BCFF02B1B325400647B18 /* ListViewController */ = {
+			isa = PBXGroup;
+			children = (
+				109BCFF12B1B32E500647B18 /* GrowingTableViewCellProtocol.swift */,
+				109BCFEE2B1B324F00647B18 /* ListViewController.swift */,
+			);
+			path = ListViewController;
+			sourceTree = "<group>";
+		};
+		109BCFF72B1B391000647B18 /* EditSection */ = {
+			isa = PBXGroup;
+			children = (
+				109BCFF32B1B390B00647B18 /* EditSection.swift */,
+				109BCFF42B1B390B00647B18 /* EditRow.swift */,
+			);
+			path = EditSection;
 			sourceTree = "<group>";
 		};
 		10E9F03A2B1B1F65007A614C /* UserListViewController */ = {
@@ -209,7 +255,9 @@
 		10E9F0462B1B2148007A614C /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				109BCFF02B1B325400647B18 /* ListViewController */,
 				10E9F03A2B1B1F65007A614C /* UserListViewController */,
+				109BCFE92B1B306500647B18 /* PostDetailViewController */,
 				1033B7972B1A68A60063EFA1 /* PostListViewController */,
 			);
 			path = ViewController;
@@ -275,6 +323,7 @@
 			files = (
 				1033B7792B1A52950063EFA1 /* LaunchScreen.storyboard in Resources */,
 				1033B7762B1A52950063EFA1 /* Assets.xcassets in Resources */,
+				109BCFFA2B1B39F800647B18 /* EditTextCell.xib in Resources */,
 				1033B7742B1A52950063EFA1 /* Main.storyboard in Resources */,
 				1033B79C2B1A68BE0063EFA1 /* PostCell.xib in Resources */,
 				10E9F04A2B1B2168007A614C /* UserCell.xib in Resources */,
@@ -291,19 +340,26 @@
 				1033B7832B1A53060063EFA1 /* CoreData.swift in Sources */,
 				1033B79E2B1A6AB60063EFA1 /* PostListViewModel.swift in Sources */,
 				1033B7712B1A52950063EFA1 /* PostListViewController.swift in Sources */,
+				109BCFEB2B1B30CF00647B18 /* PostDetailViewController.swift in Sources */,
+				109BCFFB2B1B39F800647B18 /* EditTextCell.swift in Sources */,
 				10E9F03E2B1B1F8D007A614C /* UserListViewModel.swift in Sources */,
 				10E9F0442B1B204B007A614C /* UserStorage.swift in Sources */,
 				1033B7862B1A532B0063EFA1 /* Log.swift in Sources */,
 				1033B78F2B1A53CA0063EFA1 /* Model.xcdatamodeld in Sources */,
 				10E9F0402B1B1FC4007A614C /* UserService.swift in Sources */,
+				109BCFF52B1B390B00647B18 /* EditSection.swift in Sources */,
 				10E9F0492B1B2167007A614C /* UserCell.swift in Sources */,
 				10E9F03C2B1B1F74007A614C /* UserListViewController.swift in Sources */,
 				10E9F0392B1B1E7C007A614C /* PostData.swift in Sources */,
 				1033B7962B1A67D20063EFA1 /* Model.swift in Sources */,
+				109BCFF22B1B32E500647B18 /* GrowingTableViewCellProtocol.swift in Sources */,
 				1033B76D2B1A52950063EFA1 /* AppDelegate.swift in Sources */,
+				109BCFF62B1B390B00647B18 /* EditRow.swift in Sources */,
+				109BCFEF2B1B324F00647B18 /* ListViewController.swift in Sources */,
 				10E9F0372B1B0B7E007A614C /* CDPost + Extensions.swift in Sources */,
 				10E9F0422B1B1FDB007A614C /* UserData.swift in Sources */,
 				1033B76F2B1A52950063EFA1 /* SceneDelegate.swift in Sources */,
+				109BCFED2B1B30D900647B18 /* PostDetailViewModel.swift in Sources */,
 				10E9F04C2B1B21CF007A614C /* CDUser + Extensions.swift in Sources */,
 				1033B79B2B1A68BE0063EFA1 /* PostCell.swift in Sources */,
 				1033B7A12B1A6B2E0063EFA1 /* PostService.swift in Sources */,
