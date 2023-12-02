@@ -10,7 +10,8 @@ import Foundation
 extension CDUser {
     
     func fill(data: [String: Any]) {
-        self.id = data["id"] as? Int16 ?? 0
+        let id = data["id"] as? Int ?? 0
+        self.id = id.int16
         self.name = data["name"] as? String ?? ""
     }
     

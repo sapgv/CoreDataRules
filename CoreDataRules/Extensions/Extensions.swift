@@ -61,3 +61,11 @@ public extension NSManagedObject {
     }
     
 }
+
+extension Int {
+    
+    var int16: Int16 {
+        Int16(self)
+    }
+    
+}

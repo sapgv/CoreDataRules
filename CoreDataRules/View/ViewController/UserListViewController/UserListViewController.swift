@@ -22,6 +22,7 @@ class UserListViewController: UIViewController {
         super.viewDidLoad()
         self.title = "Users"
         self.view.backgroundColor = .white
+        self.setupViewModel()
         self.setupFetchController()
         self.setupTableView()
         self.setupRefreshControl()
@@ -32,6 +33,8 @@ class UserListViewController: UIViewController {
     private func setupViewModel() {
         
         self.viewModel.updateCompletion = { [weak self] error in
+            
+            self?.refreshControl.endRefreshing()
             
             if let error = error {
                 print(error)
