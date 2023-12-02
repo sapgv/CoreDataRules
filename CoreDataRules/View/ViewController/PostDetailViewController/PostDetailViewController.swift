@@ -16,6 +16,7 @@ final class PostDetailViewController: ListViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "Post"
+        self.setupViewModel()
         self.setupTableView()
         self.setupNavigationButton()
         self.layout()
@@ -55,8 +56,7 @@ final class PostDetailViewController: ListViewController {
         
         let viewController = UserListViewController()
         viewController.selectCompletion = { [weak self] cdUser in
-            
-            
+            self?.viewModel.updateUser(cdUser: cdUser)
         }
         viewController.viewModel = UserListViewModel()
 

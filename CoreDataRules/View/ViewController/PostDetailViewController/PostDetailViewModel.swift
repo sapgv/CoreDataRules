@@ -77,7 +77,11 @@ final class PostDetailViewModel: IPostDetailViewModel {
     
     func updateUser(cdUser: CDUser) {
         
+        guard let cdUserInContext = self.viewContext.object(with: cdUser.objectID) as? CDUser else { return }
         
+        self.cdPost.cdUser = cdUserInContext
+        
+        self.updateUserCompletion?()
         
     }
     
