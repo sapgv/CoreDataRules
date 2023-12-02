@@ -9,21 +9,61 @@
 /* Begin PBXBuildFile section */
 		1033B76D2B1A52950063EFA1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1033B76C2B1A52950063EFA1 /* AppDelegate.swift */; };
 		1033B76F2B1A52950063EFA1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1033B76E2B1A52950063EFA1 /* SceneDelegate.swift */; };
-		1033B7712B1A52950063EFA1 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1033B7702B1A52950063EFA1 /* ViewController.swift */; };
+		1033B7712B1A52950063EFA1 /* PostListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1033B7702B1A52950063EFA1 /* PostListViewController.swift */; };
 		1033B7742B1A52950063EFA1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1033B7722B1A52950063EFA1 /* Main.storyboard */; };
 		1033B7762B1A52950063EFA1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1033B7752B1A52950063EFA1 /* Assets.xcassets */; };
 		1033B7792B1A52950063EFA1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1033B7772B1A52950063EFA1 /* LaunchScreen.storyboard */; };
+		1033B7832B1A53060063EFA1 /* CoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1033B7822B1A53060063EFA1 /* CoreData.swift */; };
+		1033B7862B1A532B0063EFA1 /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1033B7852B1A532B0063EFA1 /* Log.swift */; };
+		1033B7882B1A53530063EFA1 /* PostStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1033B7872B1A53530063EFA1 /* PostStorage.swift */; };
+		1033B78A2B1A536D0063EFA1 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1033B7892B1A536D0063EFA1 /* Extensions.swift */; };
+		1033B78F2B1A53CA0063EFA1 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1033B78D2B1A53CA0063EFA1 /* Model.xcdatamodeld */; };
+		1033B7962B1A67D20063EFA1 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1033B7952B1A67D20063EFA1 /* Model.swift */; };
+		1033B79B2B1A68BE0063EFA1 /* PostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1033B7992B1A68BE0063EFA1 /* PostCell.swift */; };
+		1033B79C2B1A68BE0063EFA1 /* PostCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1033B79A2B1A68BE0063EFA1 /* PostCell.xib */; };
+		1033B79E2B1A6AB60063EFA1 /* PostListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1033B79D2B1A6AB60063EFA1 /* PostListViewModel.swift */; };
+		1033B7A12B1A6B2E0063EFA1 /* PostService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1033B7A02B1A6B2E0063EFA1 /* PostService.swift */; };
+		10E9F0372B1B0B7E007A614C /* CDPost + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10E9F0362B1B0B7E007A614C /* CDPost + Extensions.swift */; };
+		10E9F0392B1B1E7C007A614C /* PostData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10E9F0382B1B1E7C007A614C /* PostData.swift */; };
+		10E9F03C2B1B1F74007A614C /* UserListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10E9F03B2B1B1F74007A614C /* UserListViewController.swift */; };
+		10E9F03E2B1B1F8D007A614C /* UserListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10E9F03D2B1B1F8D007A614C /* UserListViewModel.swift */; };
+		10E9F0402B1B1FC4007A614C /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10E9F03F2B1B1FC4007A614C /* UserService.swift */; };
+		10E9F0422B1B1FDB007A614C /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10E9F0412B1B1FDB007A614C /* UserData.swift */; };
+		10E9F0442B1B204B007A614C /* UserStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10E9F0432B1B204B007A614C /* UserStorage.swift */; };
+		10E9F0492B1B2167007A614C /* UserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10E9F0472B1B2167007A614C /* UserCell.swift */; };
+		10E9F04A2B1B2168007A614C /* UserCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 10E9F0482B1B2167007A614C /* UserCell.xib */; };
+		10E9F04C2B1B21CF007A614C /* CDUser + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10E9F04B2B1B21CF007A614C /* CDUser + Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		1033B7692B1A52950063EFA1 /* CoreDataRules.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CoreDataRules.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1033B76C2B1A52950063EFA1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1033B76E2B1A52950063EFA1 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		1033B7702B1A52950063EFA1 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		1033B7702B1A52950063EFA1 /* PostListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostListViewController.swift; sourceTree = "<group>"; };
 		1033B7732B1A52950063EFA1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		1033B7752B1A52950063EFA1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1033B7782B1A52950063EFA1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1033B77A2B1A52950063EFA1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1033B7822B1A53060063EFA1 /* CoreData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreData.swift; sourceTree = "<group>"; };
+		1033B7852B1A532B0063EFA1 /* Log.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Log.swift; sourceTree = "<group>"; };
+		1033B7872B1A53530063EFA1 /* PostStorage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostStorage.swift; sourceTree = "<group>"; };
+		1033B7892B1A536D0063EFA1 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		1033B78E2B1A53CA0063EFA1 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
+		1033B7952B1A67D20063EFA1 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
+		1033B7992B1A68BE0063EFA1 /* PostCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCell.swift; sourceTree = "<group>"; };
+		1033B79A2B1A68BE0063EFA1 /* PostCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PostCell.xib; sourceTree = "<group>"; };
+		1033B79D2B1A6AB60063EFA1 /* PostListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostListViewModel.swift; sourceTree = "<group>"; };
+		1033B7A02B1A6B2E0063EFA1 /* PostService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostService.swift; sourceTree = "<group>"; };
+		10E9F0362B1B0B7E007A614C /* CDPost + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CDPost + Extensions.swift"; sourceTree = "<group>"; };
+		10E9F0382B1B1E7C007A614C /* PostData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostData.swift; sourceTree = "<group>"; };
+		10E9F03B2B1B1F74007A614C /* UserListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserListViewController.swift; sourceTree = "<group>"; };
+		10E9F03D2B1B1F8D007A614C /* UserListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserListViewModel.swift; sourceTree = "<group>"; };
+		10E9F03F2B1B1FC4007A614C /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
+		10E9F0412B1B1FDB007A614C /* UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
+		10E9F0432B1B204B007A614C /* UserStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserStorage.swift; sourceTree = "<group>"; };
+		10E9F0472B1B2167007A614C /* UserCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCell.swift; sourceTree = "<group>"; };
+		10E9F0482B1B2167007A614C /* UserCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserCell.xib; sourceTree = "<group>"; };
+		10E9F04B2B1B21CF007A614C /* CDUser + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CDUser + Extensions.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,15 +96,123 @@
 		1033B76B2B1A52950063EFA1 /* CoreDataRules */ = {
 			isa = PBXGroup;
 			children = (
+				1033B79F2B1A6B210063EFA1 /* Services */,
+				1033B78B2B1A537B0063EFA1 /* Model */,
+				1033B7842B1A531E0063EFA1 /* Extensions */,
+				1033B7812B1A52F20063EFA1 /* CoreData */,
+				1033B7802B1A52A90063EFA1 /* Supporting Files */,
+				1033B78C2B1A53B30063EFA1 /* View */,
+			);
+			path = CoreDataRules;
+			sourceTree = "<group>";
+		};
+		1033B7802B1A52A90063EFA1 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
 				1033B76C2B1A52950063EFA1 /* AppDelegate.swift */,
 				1033B76E2B1A52950063EFA1 /* SceneDelegate.swift */,
-				1033B7702B1A52950063EFA1 /* ViewController.swift */,
 				1033B7722B1A52950063EFA1 /* Main.storyboard */,
 				1033B7752B1A52950063EFA1 /* Assets.xcassets */,
 				1033B7772B1A52950063EFA1 /* LaunchScreen.storyboard */,
 				1033B77A2B1A52950063EFA1 /* Info.plist */,
 			);
-			path = CoreDataRules;
+			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		1033B7812B1A52F20063EFA1 /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				1033B7822B1A53060063EFA1 /* CoreData.swift */,
+				10E9F0362B1B0B7E007A614C /* CDPost + Extensions.swift */,
+				10E9F04B2B1B21CF007A614C /* CDUser + Extensions.swift */,
+				10E9F0452B1B205C007A614C /* Storage */,
+				1033B78D2B1A53CA0063EFA1 /* Model.xcdatamodeld */,
+			);
+			path = CoreData;
+			sourceTree = "<group>";
+		};
+		1033B7842B1A531E0063EFA1 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				1033B7892B1A536D0063EFA1 /* Extensions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		1033B78B2B1A537B0063EFA1 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				1033B7852B1A532B0063EFA1 /* Log.swift */,
+				1033B7952B1A67D20063EFA1 /* Model.swift */,
+				10E9F0382B1B1E7C007A614C /* PostData.swift */,
+				10E9F0412B1B1FDB007A614C /* UserData.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		1033B78C2B1A53B30063EFA1 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				1033B7982B1A68AD0063EFA1 /* Xib */,
+				10E9F0462B1B2148007A614C /* ViewController */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		1033B7972B1A68A60063EFA1 /* PostListViewController */ = {
+			isa = PBXGroup;
+			children = (
+				1033B79D2B1A6AB60063EFA1 /* PostListViewModel.swift */,
+				1033B7702B1A52950063EFA1 /* PostListViewController.swift */,
+			);
+			path = PostListViewController;
+			sourceTree = "<group>";
+		};
+		1033B7982B1A68AD0063EFA1 /* Xib */ = {
+			isa = PBXGroup;
+			children = (
+				1033B7992B1A68BE0063EFA1 /* PostCell.swift */,
+				1033B79A2B1A68BE0063EFA1 /* PostCell.xib */,
+				10E9F0472B1B2167007A614C /* UserCell.swift */,
+				10E9F0482B1B2167007A614C /* UserCell.xib */,
+			);
+			path = Xib;
+			sourceTree = "<group>";
+		};
+		1033B79F2B1A6B210063EFA1 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				1033B7A02B1A6B2E0063EFA1 /* PostService.swift */,
+				10E9F03F2B1B1FC4007A614C /* UserService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		10E9F03A2B1B1F65007A614C /* UserListViewController */ = {
+			isa = PBXGroup;
+			children = (
+				10E9F03D2B1B1F8D007A614C /* UserListViewModel.swift */,
+				10E9F03B2B1B1F74007A614C /* UserListViewController.swift */,
+			);
+			path = UserListViewController;
+			sourceTree = "<group>";
+		};
+		10E9F0452B1B205C007A614C /* Storage */ = {
+			isa = PBXGroup;
+			children = (
+				1033B7872B1A53530063EFA1 /* PostStorage.swift */,
+				10E9F0432B1B204B007A614C /* UserStorage.swift */,
+			);
+			path = Storage;
+			sourceTree = "<group>";
+		};
+		10E9F0462B1B2148007A614C /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				10E9F03A2B1B1F65007A614C /* UserListViewController */,
+				1033B7972B1A68A60063EFA1 /* PostListViewController */,
+			);
+			path = ViewController;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -128,6 +276,8 @@
 				1033B7792B1A52950063EFA1 /* LaunchScreen.storyboard in Resources */,
 				1033B7762B1A52950063EFA1 /* Assets.xcassets in Resources */,
 				1033B7742B1A52950063EFA1 /* Main.storyboard in Resources */,
+				1033B79C2B1A68BE0063EFA1 /* PostCell.xib in Resources */,
+				10E9F04A2B1B2168007A614C /* UserCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -138,9 +288,27 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1033B7712B1A52950063EFA1 /* ViewController.swift in Sources */,
+				1033B7832B1A53060063EFA1 /* CoreData.swift in Sources */,
+				1033B79E2B1A6AB60063EFA1 /* PostListViewModel.swift in Sources */,
+				1033B7712B1A52950063EFA1 /* PostListViewController.swift in Sources */,
+				10E9F03E2B1B1F8D007A614C /* UserListViewModel.swift in Sources */,
+				10E9F0442B1B204B007A614C /* UserStorage.swift in Sources */,
+				1033B7862B1A532B0063EFA1 /* Log.swift in Sources */,
+				1033B78F2B1A53CA0063EFA1 /* Model.xcdatamodeld in Sources */,
+				10E9F0402B1B1FC4007A614C /* UserService.swift in Sources */,
+				10E9F0492B1B2167007A614C /* UserCell.swift in Sources */,
+				10E9F03C2B1B1F74007A614C /* UserListViewController.swift in Sources */,
+				10E9F0392B1B1E7C007A614C /* PostData.swift in Sources */,
+				1033B7962B1A67D20063EFA1 /* Model.swift in Sources */,
 				1033B76D2B1A52950063EFA1 /* AppDelegate.swift in Sources */,
+				10E9F0372B1B0B7E007A614C /* CDPost + Extensions.swift in Sources */,
+				10E9F0422B1B1FDB007A614C /* UserData.swift in Sources */,
 				1033B76F2B1A52950063EFA1 /* SceneDelegate.swift in Sources */,
+				10E9F04C2B1B21CF007A614C /* CDUser + Extensions.swift in Sources */,
+				1033B79B2B1A68BE0063EFA1 /* PostCell.swift in Sources */,
+				1033B7A12B1A6B2E0063EFA1 /* PostService.swift in Sources */,
+				1033B7882B1A53530063EFA1 /* PostStorage.swift in Sources */,
+				1033B78A2B1A536D0063EFA1 /* Extensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -289,7 +457,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = KTV28US9SX;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = CoreDataRules/Info.plist;
+				INFOPLIST_FILE = "CoreDataRules/Supporting Files/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -302,9 +470,12 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.sapgv.CoreDataRules;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -317,7 +488,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = KTV28US9SX;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = CoreDataRules/Info.plist;
+				INFOPLIST_FILE = "CoreDataRules/Supporting Files/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -330,9 +501,12 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.sapgv.CoreDataRules;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
@@ -358,6 +532,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		1033B78D2B1A53CA0063EFA1 /* Model.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				1033B78E2B1A53CA0063EFA1 /* Model.xcdatamodel */,
+			);
+			currentVersion = 1033B78E2B1A53CA0063EFA1 /* Model.xcdatamodel */;
+			path = Model.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 1033B7612B1A52950063EFA1 /* Project object */;
 }
