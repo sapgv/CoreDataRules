@@ -9,7 +9,9 @@ import CoreData
 
 public
 enum SaveStatus {
-    case saved, rolledBack, hasNoChanges, error
+    case saved
+    case hasNoChanges
+    case error(Error)
 }
 
 extension SaveStatus {
@@ -51,7 +53,7 @@ class CoreData {
         return storeType
     }
     
-    public required init(model: String, automaticallyMergesChangesFromParent: Bool = true, forStoreType storeType: StoreType = .sql) {
+    public required init(model: String, automaticallyMergesChangesFromParent: Bool = false, forStoreType storeType: StoreType = .sql) {
         
         self.model = model
         self.automaticallyMergesChangesFromParent = automaticallyMergesChangesFromParent
@@ -196,9 +198,10 @@ class CoreData {
                 try context.save()
                 result?(.saved)
             } catch {
-                Log.debug("Core Data rolled back on save", error)
-                context.rollback()
-                result?(.rolledBack)
+//                Log.debug("Core Data rolled back on save", error)
+//                context.rollback()
+                Log.debug("Core Data error on save", error)
+                result?(.error(error))
             }
         } else {
             result?(.hasNoChanges)
@@ -475,7 +478,7 @@ class CoreData {
             result?(.saved)
         }
         catch {
-            result?(.error)
+            result?(.error(error))
         }
         
     }
@@ -514,7 +517,7 @@ class CoreData {
             result?(.saved)
         } catch {
             Log.debug("CoreData", "Could not clean \(error.localizedDescription)")
-            result?(.error)
+            result?(.error(error))
         }
         
     }

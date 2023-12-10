@@ -22,6 +22,10 @@ protocol IPostStorage: AnyObject {
     
     func delete(cdPost: CDPost, completion: @escaping (NSError?) -> Void)
     
+    func markBatch(cdPost: CDPost, completion: @escaping (NSError?) -> Void)
+    
+    func mark(cdPost: CDPost, completion: @escaping (NSError?) -> Void)
+    
 }
 
 final class PostStorage: IPostStorage {
@@ -68,6 +72,67 @@ final class PostStorage: IPostStorage {
                         completion(nil)
                     default:
                         completion(StorageError.deleteFailure(CDPost.entityName).NSError)
+                    }
+                    
+                }
+                
+            }
+            
+        }
+        
+    }
+    
+    func markBatch(cdPost: CDPost, completion: @escaping (NSError?) -> Void) {
+        
+        Model.coreData.backgroundTask { privateContext in
+            
+            guard let cdPost = privateContext.object(with: cdPost.objectID) as? CDPost else { return }
+            
+            guard let id = cdPost.id else { return }
+            
+            let predicate = NSPredicate(format: "id == %@", id)
+            
+            let updateRequest = NSBatchUpdateRequest(entityName: CDPost.entityName)
+            updateRequest.predicate = predicate
+            updateRequest.propertiesToUpdate = ["mark": true]
+            updateRequest.resultType = .updatedObjectIDsResultType
+            
+            do {
+                let results = try privateContext.execute(updateRequest) as! NSBatchUpdateResult
+                let changes: [AnyHashable: Any] = [
+                    NSUpdatedObjectsKey: results.result as! [NSManagedObjectID]
+                ]
+//                if !contexts.isEmpty {
+//                    Log.debug("CoreData", "start merging")
+//                    NSManagedObjectContext.mergeChanges(fromRemoteContextSave: changes, into: contexts)
+//                    Log.debug("CoreData", "end merging")
+//                }
+                completion(nil)
+            } catch {
+                completion(error.NSError)
+            }
+            
+        }
+        
+    }
+    
+    func mark(cdPost: CDPost, completion: @escaping (NSError?) -> Void) {
+        
+        Model.coreData.backgroundTask { privateContext in
+            
+            guard let cdPost = privateContext.object(with: cdPost.objectID) as? CDPost else { return }
+            
+            cdPost.mark = true
+            
+            Model.coreData.save(in: privateContext) { status in
+                
+                DispatchQueue.main.async {
+                    
+                    switch status {
+                    case .hasNoChanges, .saved:
+                        completion(nil)
+                    default:
+                        completion(StorageError.saveFailure(CDPost.entityName).NSError)
                     }
                     
                 }

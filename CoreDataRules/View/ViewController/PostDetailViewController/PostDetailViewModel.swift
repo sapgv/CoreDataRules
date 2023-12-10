@@ -41,10 +41,14 @@ final class PostDetailViewModel: IPostDetailViewModel {
     
     private(set) var sections: [EditSection] = []
     
-    init(cdPost: CDPost, viewContext: NSManagedObjectContext) {
-        
+    private let postStorage: IPostStorage
+    
+    init(cdPost: CDPost,
+         viewContext: NSManagedObjectContext,
+         postStorage: IPostStorage = PostStorage()) {
         self.cdPost = cdPost
         self.viewContext = viewContext
+        self.postStorage = postStorage
         
         self.sections = [
             
@@ -68,13 +72,19 @@ final class PostDetailViewModel: IPostDetailViewModel {
     
     func save() {
         
+        self.viewContext.refresh(self.cdPost, mergeChanges: true)
+        
+//        self.viewContext.refreshAllObjects()
+        
+//        self.viewContext.mergePolicy = NSMergePolicy.overwrite
+        
         Model.coreData.save(in: self.viewContext) { [weak self] status in
             
             switch status {
             case .hasNoChanges, .saved:
                 self?.saveCompletion?(nil)
-            default:
-                self?.saveCompletion?(StorageError.saveFailure(CDUser.entityName).NSError)
+            case let .error(error):
+                self?.saveCompletion?(error.NSError)
             }
             
         }
@@ -83,37 +93,20 @@ final class PostDetailViewModel: IPostDetailViewModel {
     
     func update() {
         
-        Model.coreData.backgroundTask { [weak self, id = self.cdPost.id] privateContext in
+//        self.postStorage.markBatch(cdPost: cdPost) { [weak self] error in
+//
+//            self?.updateCompletion?(error)
+//
+//        }
+        
+        self.postStorage.mark(cdPost: cdPost) { [weak self] error in
             
-            guard let self = self else { return }
-            
-            guard let id = id else { return }
-            
-            let predicate = NSPredicate(format: "id == %@", id)
-            
-            guard let cdPost = Model.coreData.fetchOne(entity: CDPost.entityName, predicate: predicate, sort: nil, from: nil, in: privateContext) as? CDPost else { return }
-            
-            cdPost.title = "\(cdPost.title ?? "") обновлено \(Date().formatted(.dateTime))"
-            
-            Model.coreData.save(in: privateContext) { status in
-                
-                DispatchQueue.main.async {
-                    
-                    switch status {
-                    case .hasNoChanges, .saved:
-                        self.updateCompletion?(nil)
-                    default:
-                        self.updateCompletion?(StorageError.saveFailure(CDPost.entityName).NSError)
-                    }
-                    
-                }
-                
-            }
+            self?.updateCompletion?(error)
             
         }
         
     }
-    
+//
     func updateUser(cdUser: CDUser) {
         
         guard let cdUserInContext = self.viewContext.object(with: cdUser.objectID) as? CDUser else { return }

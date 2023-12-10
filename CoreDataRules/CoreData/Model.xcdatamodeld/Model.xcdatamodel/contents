@@ -4,6 +4,7 @@
         <attribute name="body" optional="YES" attributeType="String"/>
         <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="id" optional="YES" attributeType="String"/>
+        <attribute name="mark" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="title" optional="YES" attributeType="String"/>
         <relationship name="cdUser" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CDUser" inverseName="cdPosts_" inverseEntity="CDUser"/>
         <uniquenessConstraints>
