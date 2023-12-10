@@ -47,10 +47,10 @@ extension UITableView {
 
 extension NSManagedObjectContext {
     
-    func objectInContext<T: NSManagedObject>(_ type: T.Type, objectID: NSManagedObjectID?) -> T? {
-        guard let objectID = objectID else { return nil }
-        return self.object(with: objectID) as? T
-    }
+//    func objectInContext<T: NSManagedObject>(_ type: T.Type, objectID: NSManagedObjectID?) -> T? {
+//        guard let objectID = objectID else { return nil }
+//        return self.object(with: objectID) as? T
+//    }
     
 }
 

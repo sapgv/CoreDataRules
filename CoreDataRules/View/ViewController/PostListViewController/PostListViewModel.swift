@@ -11,13 +11,25 @@ protocol IPostListViewModel: AnyObject {
     
     var createPostCompletion: ((CDPost, NSManagedObjectContext) -> Void)? { get set }
     
+    var editPostCompletion: ((CDPost, NSManagedObjectContext) -> Void)? { get set }
+    
+    var deletePostCompletion: ((NSError?) -> Void)? { get set }
+    
     func createPost()
+    
+    func edit(cdPost: CDPost)
+    
+    func delete(cdPost: CDPost)
     
 }
 
 final class PostListViewModel: IPostListViewModel {
     
     var createPostCompletion: ((CDPost, NSManagedObjectContext) -> Void)?
+    
+    var editPostCompletion: ((CDPost, NSManagedObjectContext) -> Void)?
+    
+    var deletePostCompletion: ((NSError?) -> Void)?
     
     private let postStorage: IPostStorage
     
@@ -27,11 +39,31 @@ final class PostListViewModel: IPostListViewModel {
     
     func createPost() {
         
-        let viewContext = Model.coreData.createChildContextFromCoordinator(for: .mainQueueConcurrencyType)
-
-        let cdPost = self.postStorage.createPost(context: viewContext)
+        self.postStorage.create { [weak self] cdPost, viewContext in
+            
+            self?.createPostCompletion?(cdPost, viewContext)
+            
+        }
         
-        self.createPostCompletion?(cdPost, viewContext)
+    }
+    
+    func edit(cdPost: CDPost) {
+        
+        self.postStorage.edit(cdPost: cdPost) { [weak self] cdPost, viewContext in
+            
+            self?.editPostCompletion?(cdPost, viewContext)
+            
+        }
+        
+    }
+    
+    func delete(cdPost: CDPost) {
+        
+        self.postStorage.delete(cdPost: cdPost) { [weak self] error in
+            
+            self?.deletePostCompletion?(error)
+            
+        }
         
     }
     

@@ -30,6 +30,21 @@ class PostListViewController: ListViewController {
             
         }
         
+        self.viewModel.editPostCompletion = { [weak self] cdPost, viewContext in
+            
+            self?.showPost(cdPost: cdPost, viewContext: viewContext)
+            
+        }
+        
+        self.viewModel.deletePostCompletion = { error in
+            
+            if let error = error {
+                print(error)
+                return
+            }
+            
+        }
+        
     }
     
     private func setupFetchController() {
@@ -66,6 +81,12 @@ class PostListViewController: ListViewController {
         
         postDetailViewController.viewModel = postDetailViewModel
         
+        postDetailViewController.completion = { [weak self] in
+            
+            self?.navigationController?.popViewController(animated: true)
+            
+        }
+        
         self.navigationController?.pushViewController(postDetailViewController, animated: true)
         
     }
@@ -87,6 +108,42 @@ extension PostListViewController {
         cell.setup(cdPost: cdPost)
         
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        
+        let deleteAction = UIContextualAction(style: .destructive, title: "Удалить") { [weak self] _, _, completion in
+            
+            guard let cdPost = self?.controller?.fetchedObjects?[indexPath.row] as? CDPost else {
+                completion(true)
+                return
+            }
+            
+            self?.viewModel.delete(cdPost: cdPost)
+            
+            completion(true)
+            
+        }
+        
+        let editAction = UIContextualAction(style: .normal, title: "Редактировать") { [weak self] _, _, completion in
+            
+            guard let cdPost = self?.controller?.fetchedObjects?[indexPath.row] as? CDPost else {
+                completion(true)
+                return
+            }
+            
+            self?.viewModel.edit(cdPost: cdPost)
+            
+            completion(true)
+            
+        }
+        
+        editAction.backgroundColor = .systemYellow
+        
+        let config = UISwipeActionsConfiguration(actions: [deleteAction, editAction])
+        
+        return config
+        
     }
     
 }

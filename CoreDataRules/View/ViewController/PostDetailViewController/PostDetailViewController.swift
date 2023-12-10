@@ -36,12 +36,34 @@ final class PostDetailViewController: ListViewController {
             
         }
         
+        self.viewModel.saveCompletion = { [weak self] error in
+            
+            if let error = error {
+                print(error)
+                return
+            }
+            
+//            self?.completion?()
+            
+        }
+        
+        self.viewModel.updateCompletion = { [weak self] error in
+            
+            if let error = error {
+                print(error)
+                return
+            }
+            
+        }
+        
     }
     
     private func setupNavigationButton() {
         
-        let button = UIBarButtonItem(title: "Сохранить", style: .plain, target: self, action: #selector(save))
-        self.navigationItem.rightBarButtonItem = button
+        let saveButton = UIBarButtonItem(title: "Сохранить", style: .plain, target: self, action: #selector(save))
+        let updateButton = UIBarButtonItem(title: "Обновить", style: .plain, target: self, action: #selector(update))
+        
+        self.navigationItem.rightBarButtonItems = [saveButton, updateButton]
         
     }
     
@@ -52,10 +74,18 @@ final class PostDetailViewController: ListViewController {
         
     }
     
+    @objc
+    private func update() {
+        
+        self.viewModel?.update()
+        
+    }
+    
     private func showSelectUser() {
         
         let viewController = UserListViewController()
         viewController.selectCompletion = { [weak self] cdUser in
+            self?.navigationController?.popViewController(animated: true)
             self?.viewModel.updateUser(cdUser: cdUser)
         }
         viewController.viewModel = UserListViewModel()
@@ -114,6 +144,7 @@ extension PostDetailViewController {
             }
             
             cell.titleLabel.text = "Заголовок"
+            cell.textView.text = self.viewModel.cdPost.title
             cell.growingDelegate = self
             cell.editChaged = { text in
                 self.viewModel?.cdPost.title = text
@@ -128,6 +159,7 @@ extension PostDetailViewController {
             }
             
             cell.titleLabel.text = "Описание"
+            cell.textView.text = self.viewModel.cdPost.body
             cell.growingDelegate = self
             cell.editChaged = { text in
                 self.viewModel?.cdPost.body = text
