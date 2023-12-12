@@ -26,6 +26,7 @@ final class PostDetailViewController: ListViewController {
         super.setupTableView()
         self.tableView.register(UINib(nibName: "UserCell", bundle: nil), forCellReuseIdentifier: "UserCell")
         self.tableView.register(UINib(nibName: "EditTextCell", bundle: nil), forCellReuseIdentifier: "EditTextCell")
+        self.tableView.register(UINib(nibName: "MarkCell", bundle: nil), forCellReuseIdentifier: "MarkCell")
     }
     
     private func setupViewModel() {
@@ -47,7 +48,7 @@ final class PostDetailViewController: ListViewController {
             
         }
         
-        self.viewModel.updateCompletion = { [weak self] error in
+        self.viewModel.markCompletion = { [weak self] error in
             
             if let error = error {
                 print(error)
@@ -56,14 +57,21 @@ final class PostDetailViewController: ListViewController {
             
         }
         
+        self.viewModel.updateCompletion = { [weak self] in
+            
+            self?.tableView.reloadData()
+            
+        }
+        
     }
     
     private func setupNavigationButton() {
         
         let saveButton = UIBarButtonItem(title: "Сохранить", style: .plain, target: self, action: #selector(save))
+        let markButton = UIBarButtonItem(title: "Отметить", style: .plain, target: self, action: #selector(mark))
         let updateButton = UIBarButtonItem(title: "Обновить", style: .plain, target: self, action: #selector(update))
         
-        self.navigationItem.rightBarButtonItems = [saveButton, updateButton]
+        self.navigationItem.rightBarButtonItems = [saveButton, markButton, updateButton]
         
     }
     
@@ -71,6 +79,13 @@ final class PostDetailViewController: ListViewController {
     private func save() {
         
         self.viewModel?.save()
+        
+    }
+    
+    @objc
+    private func mark() {
+        
+        self.viewModel?.mark()
         
     }
     
@@ -164,6 +179,16 @@ extension PostDetailViewController {
             cell.editChaged = { text in
                 self.viewModel?.cdPost.body = text
             }
+            
+            return cell
+            
+        case is PostMarkRow:
+            
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "MarkCell", for: indexPath) as? MarkCell else {
+                return UITableViewCell()
+            }
+            
+            cell.setup(mark: self.viewModel.cdPost.mark)
             
             return cell
             

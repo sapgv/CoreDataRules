@@ -39,15 +39,15 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "36E7BBB3-D670-47A4-AF9F-A52C378F76B3"
+            uuid = "A3CF9C81-976A-4758-AC7B-46DF83BF064A"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CoreDataRules/View/ViewController/PostDetailViewController/PostDetailViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "87"
-            endingLineNumber = "87"
+            startingLineNumber = "92"
+            endingLineNumber = "92"
             landmarkName = "save()"
             landmarkType = "7">
          </BreakpointContent>
@@ -55,80 +55,16 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "50209BE7-B64C-469C-8711-3D08F43A3641"
+            uuid = "63ACB6C6-C521-440C-8F58-E590922345DD"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CoreDataRules/View/ViewController/PostDetailViewController/PostDetailViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "85"
-            endingLineNumber = "85"
+            startingLineNumber = "94"
+            endingLineNumber = "94"
             landmarkName = "save()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "133CFE50-2EDE-4D77-B849-5BF54B210C5B"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "CoreDataRules/View/ViewController/PostDetailViewController/PostDetailViewModel.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "81"
-            endingLineNumber = "81"
-            landmarkName = "save()"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "133CFE50-2EDE-4D77-B849-5BF54B210C5B - f30cd24f6454b8dd"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "CoreDataRules.PostDetailViewModel.save() -&gt; ()"
-                  moduleName = "CoreDataRules"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/sapogov/Projects/work/CoreDataRules/CoreDataRules/View/ViewController/PostDetailViewController/PostDetailViewModel.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "81"
-                  endingLineNumber = "81"
-                  offsetFromSymbolStart = "152">
-               </Location>
-               <Location
-                  uuid = "133CFE50-2EDE-4D77-B849-5BF54B210C5B - a7587b7337ef8348"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (CoreDataRules.SaveStatus) -&gt; () in CoreDataRules.PostDetailViewModel.save() -&gt; ()"
-                  moduleName = "CoreDataRules"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/sapogov/Projects/work/CoreDataRules/CoreDataRules/View/ViewController/PostDetailViewController/PostDetailViewModel.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "81"
-                  endingLineNumber = "81"
-                  offsetFromSymbolStart = "36">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "4C19B5B0-FC4B-46D8-829E-8D03E0526AD9"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "CoreDataRules/CoreData/CoreData.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "203"
-            endingLineNumber = "203"
-            landmarkName = "save(in:result:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

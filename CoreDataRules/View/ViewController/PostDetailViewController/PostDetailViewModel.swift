@@ -13,13 +13,17 @@ protocol IPostDetailViewModel: AnyObject {
     
     var saveCompletion: ((Error?) -> Void)? { get set }
     
-    var updateCompletion: ((Error?) -> Void)? { get set }
+    var markCompletion: ((Error?) -> Void)? { get set }
+    
+    var updateCompletion: (() -> Void)? { get set }
     
     var cdPost: CDPost { get }
 
     var sections: [EditSection] { get }
     
     func save()
+    
+    func mark()
     
     func update()
     
@@ -33,7 +37,9 @@ final class PostDetailViewModel: IPostDetailViewModel {
     
     var saveCompletion: ((Error?) -> Void)?
     
-    var updateCompletion: ((Error?) -> Void)?
+    var markCompletion: ((Error?) -> Void)?
+    
+    var updateCompletion: (() -> Void)?
     
     let cdPost: CDPost
     
@@ -48,6 +54,7 @@ final class PostDetailViewModel: IPostDetailViewModel {
          postStorage: IPostStorage = PostStorage()) {
         self.cdPost = cdPost
         self.viewContext = viewContext
+        self.viewContext.automaticallyMergesChangesFromParent = true
         self.postStorage = postStorage
         
         self.sections = [
@@ -66,17 +73,17 @@ final class PostDetailViewModel: IPostDetailViewModel {
                 
             ]),
             
+            EditSection(title: "Mark", rows: [
+                
+                PostMarkRow(),
+                
+            ]),
+            
         ]
         
     }
     
     func save() {
-        
-        self.viewContext.refresh(self.cdPost, mergeChanges: true)
-        
-//        self.viewContext.refreshAllObjects()
-        
-//        self.viewContext.mergePolicy = NSMergePolicy.overwrite
         
         Model.coreData.save(in: self.viewContext) { [weak self] status in
             
@@ -91,22 +98,23 @@ final class PostDetailViewModel: IPostDetailViewModel {
         
     }
     
-    func update() {
-        
-//        self.postStorage.markBatch(cdPost: cdPost) { [weak self] error in
-//
-//            self?.updateCompletion?(error)
-//
-//        }
+    func mark() {
         
         self.postStorage.mark(cdPost: cdPost) { [weak self] error in
-            
-            self?.updateCompletion?(error)
-            
+
+            self?.markCompletion?(error)
+
         }
         
     }
-//
+    
+    func update() {
+        
+        self.viewContext.refresh(self.cdPost, mergeChanges: true)
+        
+        self.updateCompletion?()
+    }
+
     func updateUser(cdUser: CDUser) {
         
         guard let cdUserInContext = self.viewContext.object(with: cdUser.objectID) as? CDUser else { return }

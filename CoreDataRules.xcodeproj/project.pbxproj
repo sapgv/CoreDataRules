@@ -31,6 +31,8 @@
 		109BCFF62B1B390B00647B18 /* EditRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 109BCFF42B1B390B00647B18 /* EditRow.swift */; };
 		109BCFFA2B1B39F800647B18 /* EditTextCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 109BCFF82B1B39F800647B18 /* EditTextCell.xib */; };
 		109BCFFB2B1B39F800647B18 /* EditTextCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 109BCFF92B1B39F800647B18 /* EditTextCell.swift */; };
+		10BC9C7E2B28240C00E3EF39 /* MarkCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10BC9C7C2B28240C00E3EF39 /* MarkCell.swift */; };
+		10BC9C7F2B28240C00E3EF39 /* MarkCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 10BC9C7D2B28240C00E3EF39 /* MarkCell.xib */; };
 		10E9F0372B1B0B7E007A614C /* CDPost + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10E9F0362B1B0B7E007A614C /* CDPost + Extensions.swift */; };
 		10E9F0392B1B1E7C007A614C /* PostData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10E9F0382B1B1E7C007A614C /* PostData.swift */; };
 		10E9F03C2B1B1F74007A614C /* UserListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10E9F03B2B1B1F74007A614C /* UserListViewController.swift */; };
@@ -70,6 +72,8 @@
 		109BCFF42B1B390B00647B18 /* EditRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditRow.swift; sourceTree = "<group>"; };
 		109BCFF82B1B39F800647B18 /* EditTextCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EditTextCell.xib; sourceTree = "<group>"; };
 		109BCFF92B1B39F800647B18 /* EditTextCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditTextCell.swift; sourceTree = "<group>"; };
+		10BC9C7C2B28240C00E3EF39 /* MarkCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkCell.swift; sourceTree = "<group>"; };
+		10BC9C7D2B28240C00E3EF39 /* MarkCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MarkCell.xib; sourceTree = "<group>"; };
 		10E9F0362B1B0B7E007A614C /* CDPost + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CDPost + Extensions.swift"; sourceTree = "<group>"; };
 		10E9F0382B1B1E7C007A614C /* PostData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostData.swift; sourceTree = "<group>"; };
 		10E9F03B2B1B1F74007A614C /* UserListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserListViewController.swift; sourceTree = "<group>"; };
@@ -194,6 +198,8 @@
 				1033B79A2B1A68BE0063EFA1 /* PostCell.xib */,
 				10E9F0472B1B2167007A614C /* UserCell.swift */,
 				10E9F0482B1B2167007A614C /* UserCell.xib */,
+				10BC9C7C2B28240C00E3EF39 /* MarkCell.swift */,
+				10BC9C7D2B28240C00E3EF39 /* MarkCell.xib */,
 			);
 			path = Xib;
 			sourceTree = "<group>";
@@ -326,6 +332,7 @@
 				109BCFFA2B1B39F800647B18 /* EditTextCell.xib in Resources */,
 				1033B7742B1A52950063EFA1 /* Main.storyboard in Resources */,
 				1033B79C2B1A68BE0063EFA1 /* PostCell.xib in Resources */,
+				10BC9C7F2B28240C00E3EF39 /* MarkCell.xib in Resources */,
 				10E9F04A2B1B2168007A614C /* UserCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -345,6 +352,7 @@
 				10E9F03E2B1B1F8D007A614C /* UserListViewModel.swift in Sources */,
 				10E9F0442B1B204B007A614C /* UserStorage.swift in Sources */,
 				1033B7862B1A532B0063EFA1 /* Log.swift in Sources */,
+				10BC9C7E2B28240C00E3EF39 /* MarkCell.swift in Sources */,
 				1033B78F2B1A53CA0063EFA1 /* Model.xcdatamodeld in Sources */,
 				10E9F0402B1B1FC4007A614C /* UserService.swift in Sources */,
 				109BCFF52B1B390B00647B18 /* EditSection.swift in Sources */,

@@ -22,7 +22,7 @@ protocol IPostStorage: AnyObject {
     
     func delete(cdPost: CDPost, completion: @escaping (NSError?) -> Void)
     
-    func markBatch(cdPost: CDPost, completion: @escaping (NSError?) -> Void)
+    func markBatch(cdPost: CDPost, contexts: [NSManagedObjectContext], completion: @escaping (NSError?) -> Void)
     
     func mark(cdPost: CDPost, completion: @escaping (NSError?) -> Void)
     
@@ -82,7 +82,7 @@ final class PostStorage: IPostStorage {
         
     }
     
-    func markBatch(cdPost: CDPost, completion: @escaping (NSError?) -> Void) {
+    func markBatch(cdPost: CDPost, contexts: [NSManagedObjectContext], completion: @escaping (NSError?) -> Void) {
         
         Model.coreData.backgroundTask { privateContext in
             
@@ -94,7 +94,7 @@ final class PostStorage: IPostStorage {
             
             let updateRequest = NSBatchUpdateRequest(entityName: CDPost.entityName)
             updateRequest.predicate = predicate
-            updateRequest.propertiesToUpdate = ["mark": true]
+            updateRequest.propertiesToUpdate = ["mark": !cdPost.mark]
             updateRequest.resultType = .updatedObjectIDsResultType
             
             do {
@@ -102,11 +102,11 @@ final class PostStorage: IPostStorage {
                 let changes: [AnyHashable: Any] = [
                     NSUpdatedObjectsKey: results.result as! [NSManagedObjectID]
                 ]
-//                if !contexts.isEmpty {
-//                    Log.debug("CoreData", "start merging")
-//                    NSManagedObjectContext.mergeChanges(fromRemoteContextSave: changes, into: contexts)
-//                    Log.debug("CoreData", "end merging")
-//                }
+                if !contexts.isEmpty {
+                    Log.debug("CoreData", "start merging")
+                    NSManagedObjectContext.mergeChanges(fromRemoteContextSave: changes, into: contexts)
+                    Log.debug("CoreData", "end merging")
+                }
                 completion(nil)
             } catch {
                 completion(error.NSError)
@@ -122,7 +122,7 @@ final class PostStorage: IPostStorage {
             
             guard let cdPost = privateContext.object(with: cdPost.objectID) as? CDPost else { return }
             
-            cdPost.mark = true
+            cdPost.mark.toggle()
             
             Model.coreData.save(in: privateContext) { status in
                 

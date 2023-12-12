@@ -29,3 +29,9 @@ final class PostUserRow: EditRow {
     
     
 }
+
+final class PostMarkRow: EditRow {
+    
+    
+    
+}

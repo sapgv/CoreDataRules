@@ -113,17 +113,17 @@ class CoreData {
         return managedObjectContext
     }
     
-    public func createChildContextFromCoordinator(for concurrencyType: NSManagedObjectContextConcurrencyType, automaticallyMergesChangesFromParent: Bool? = nil) -> NSManagedObjectContext {
+    public func createChildContextFromCoordinator(for concurrencyType: NSManagedObjectContextConcurrencyType, automaticallyMergesChangesFromParent: Bool = false) -> NSManagedObjectContext {
         let managedObjectContext = NSManagedObjectContext(concurrencyType: concurrencyType)
         managedObjectContext.persistentStoreCoordinator = self.viewContext.persistentStoreCoordinator
         if #available(iOS 10.0, *) {
-            managedObjectContext.automaticallyMergesChangesFromParent = automaticallyMergesChangesFromParent ?? self.automaticallyMergesChangesFromParent
+            managedObjectContext.automaticallyMergesChangesFromParent = automaticallyMergesChangesFromParent
         }
         return managedObjectContext
     }
     
     @available(iOS 10.0, *)
-    public func createChildContextFromCoordinator(for concurrencyType: NSManagedObjectContextConcurrencyType, mergePolicy: NSMergePolicy, automaticallyMergesChangesFromParent: Bool? = nil) -> NSManagedObjectContext {
+    public func createChildContextFromCoordinator(for concurrencyType: NSManagedObjectContextConcurrencyType, mergePolicy: NSMergePolicy, automaticallyMergesChangesFromParent: Bool = false) -> NSManagedObjectContext {
         let managedObjectContext = self.createChildContextFromCoordinator(for: concurrencyType, automaticallyMergesChangesFromParent: automaticallyMergesChangesFromParent)
         managedObjectContext.mergePolicy = mergePolicy
         return managedObjectContext
