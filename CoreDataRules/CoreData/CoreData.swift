@@ -53,7 +53,7 @@ class CoreData {
         return storeType
     }
     
-    public required init(model: String, automaticallyMergesChangesFromParent: Bool = false, forStoreType storeType: StoreType = .sql) {
+    public required init(model: String, automaticallyMergesChangesFromParent: Bool = true, forStoreType storeType: StoreType = .sql) {
         
         self.model = model
         self.automaticallyMergesChangesFromParent = automaticallyMergesChangesFromParent
@@ -113,18 +113,18 @@ class CoreData {
         return managedObjectContext
     }
     
-    public func createChildContextFromCoordinator(for concurrencyType: NSManagedObjectContextConcurrencyType) -> NSManagedObjectContext {
+    public func createChildContextFromCoordinator(for concurrencyType: NSManagedObjectContextConcurrencyType, automaticallyMergesChangesFromParent: Bool? = nil) -> NSManagedObjectContext {
         let managedObjectContext = NSManagedObjectContext(concurrencyType: concurrencyType)
         managedObjectContext.persistentStoreCoordinator = self.viewContext.persistentStoreCoordinator
         if #available(iOS 10.0, *) {
-            managedObjectContext.automaticallyMergesChangesFromParent = self.automaticallyMergesChangesFromParent
+            managedObjectContext.automaticallyMergesChangesFromParent = automaticallyMergesChangesFromParent ?? self.automaticallyMergesChangesFromParent
         }
         return managedObjectContext
     }
     
     @available(iOS 10.0, *)
-    public func createChildContextFromCoordinator(for concurrencyType: NSManagedObjectContextConcurrencyType, mergePolicy: NSMergePolicy) -> NSManagedObjectContext {
-        let managedObjectContext = self.createChildContextFromCoordinator(for: concurrencyType)
+    public func createChildContextFromCoordinator(for concurrencyType: NSManagedObjectContextConcurrencyType, mergePolicy: NSMergePolicy, automaticallyMergesChangesFromParent: Bool? = nil) -> NSManagedObjectContext {
+        let managedObjectContext = self.createChildContextFromCoordinator(for: concurrencyType, automaticallyMergesChangesFromParent: automaticallyMergesChangesFromParent)
         managedObjectContext.mergePolicy = mergePolicy
         return managedObjectContext
     }
