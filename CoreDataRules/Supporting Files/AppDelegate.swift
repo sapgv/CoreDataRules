@@ -15,6 +15,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         Model.coreData = CoreData(model: "Model")
         
+        Model.coreDataNew = CoreData(model: "Model")
+        
         UITableView.restoreAppearance()
         UINavigationBar.restoreAppearance()
         

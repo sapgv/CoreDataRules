@@ -11,4 +11,6 @@ final class Model {
     
     static var coreData: CoreData!
     
+    static var coreDataNew: CoreData!
+    
 }

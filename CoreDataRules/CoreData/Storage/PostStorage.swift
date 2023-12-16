@@ -118,13 +118,13 @@ final class PostStorage: IPostStorage {
     
     func mark(cdPost: CDPost, completion: @escaping (NSError?) -> Void) {
         
-        Model.coreData.backgroundTask { privateContext in
+        Model.coreDataNew.backgroundTask { privateContext in
             
             guard let cdPost = privateContext.object(with: cdPost.objectID) as? CDPost else { return }
             
             cdPost.mark.toggle()
             
-            Model.coreData.save(in: privateContext) { status in
+            Model.coreDataNew.save(in: privateContext) { status in
                 
                 DispatchQueue.main.async {
                     

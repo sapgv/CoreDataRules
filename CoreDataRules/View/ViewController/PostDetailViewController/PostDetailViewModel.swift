@@ -85,6 +85,8 @@ final class PostDetailViewModel: IPostDetailViewModel {
     
     func save() {
         
+        self.viewContext.mergePolicy = NSMergePolicy.mergeByPropertyObjectTrump
+        
         Model.coreData.save(in: self.viewContext) { [weak self] status in
             
             switch status {
@@ -100,11 +102,17 @@ final class PostDetailViewModel: IPostDetailViewModel {
     
     func mark() {
         
-        self.postStorage.mark(cdPost: cdPost) { [weak self] error in
-
+        self.postStorage.markBatch(cdPost: cdPost, contexts: [self.viewContext]) { [weak self] error in
+            
             self?.markCompletion?(error)
-
+            
         }
+        
+//        self.postStorage.mark(cdPost: cdPost) { [weak self] error in
+//
+//            self?.markCompletion?(error)
+//
+//        }
         
     }
     
@@ -113,6 +121,7 @@ final class PostDetailViewModel: IPostDetailViewModel {
         self.viewContext.refresh(self.cdPost, mergeChanges: true)
         
         self.updateCompletion?()
+        
     }
 
     func updateUser(cdUser: CDUser) {
